@@ -76,7 +76,7 @@ with st.sidebar:
         error = round(errors(x, y, slope, bias),2)
         st.caption(f"오차:{error}")
         y_human = np.array(x_copy_n*slope+bias)
-        ax.plot(x_n, y_human, color='blue', label='인간이 그린 선')
+        ax.plot(x_copy_n, y_human, color='blue', label='인간이 그린 선')
         # 회귀 방정식을 그래프에 추가
         equation_text1 = f'Human prediction y = {slope:.2f}x + {bias:.2f}'
         ax.text(11, y_human[-2]+2, equation_text1, fontsize=8, color='black')
