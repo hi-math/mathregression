@@ -41,7 +41,7 @@ with col10:
 
 x = [2,3,4,5,7,8,9,10, 11, 12]
 y = [data2, data3, data4, data5, data7, data8, data9, data10, data11, data12]
-x_n = np.array(x.append(0)).reshape(-1, 1)
+x_n = np.array(x).reshape(-1, 1)
 y_n = np.array(y)
         
 def errors(x, y, a, b):
@@ -72,7 +72,8 @@ with st.sidebar:
         bias = st.slider("y절편", min_value=5.0, max_value=15.0, value=10.0, step=0.1, key=12)
         error = round(errors(x, y, slope, bias),2)
         st.caption(f"오차:{error}")
-        y_human = np.array(x_n*slope+bias)
+        x_axis = np.array(x.append(0)).reshape(-1, 1)
+        y_human = np.array(x_axis*slope+bias)
         ax.plot(x_n, y_human, color='blue', label='인간이 그린 선')
         # 회귀 방정식을 그래프에 추가
         equation_text1 = f'Human prediction y = {slope:.2f}x + {bias:.2f}'
