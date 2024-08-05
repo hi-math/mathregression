@@ -41,7 +41,7 @@ with col10:
 
 x = [2,3,4,5,7,8,9,10, 11, 12]
 y = [data2, data3, data4, data5, data7, data8, data9, data10, data11, data12]
-x_n = np.array(x).reshape(-1, 1)
+x_n = np.array(x.append(0)).reshape(-1, 1)
 y_n = np.array(y)
         
 def errors(x, y, a, b):
