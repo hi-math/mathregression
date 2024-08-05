@@ -43,6 +43,9 @@ x = [2,3,4,5,7,8,9,10, 11, 12]
 y = [data2, data3, data4, data5, data7, data8, data9, data10, data11, data12]
 x_n = np.array(x).reshape(-1, 1)
 y_n = np.array(y)
+x_copy = x[:]
+x_copy.append(0)
+x_copy_n = np.array(x_copy).reshape(-1, 1)
         
 def errors(x, y, a, b):
     error=0
@@ -72,8 +75,7 @@ with st.sidebar:
         bias = st.slider("y절편", min_value=5.0, max_value=15.0, value=10.0, step=0.1, key=12)
         error = round(errors(x, y, slope, bias),2)
         st.caption(f"오차:{error}")
-        x_axis = np.array(x.append(0)).reshape(-1, 1)
-        y_human = np.array(x_axis*slope+bias)
+        y_human = np.array(x_copy_n*slope+bias)
         ax.plot(x_n, y_human, color='blue', label='인간이 그린 선')
         # 회귀 방정식을 그래프에 추가
         equation_text1 = f'Human prediction y = {slope:.2f}x + {bias:.2f}'
@@ -90,10 +92,10 @@ with st.sidebar:
         
         # 예측값 계산
         
-        y_pred = model.predict(x_n)
+        y_pred = model.predict(x_copy_n)
 
         # 결과 시각화
-        ax.plot(x_n, y_pred, color='red', label='Fitted line')
+        ax.plot(x_copy_n, y_pred, color='red', label='Fitted line')
         equation_text2 = f'AI prediction y = {a:.2f}x + {b:.2f}'
         ax.text(11, y_pred[-2]-2, equation_text2, fontsize=8, color='black')
         st.caption(f"y={a}x+{b}")
