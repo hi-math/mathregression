@@ -93,9 +93,9 @@ with st.sidebar:
 
         # 결과 시각화
         ax.plot(x_n, y_pred, color='red', label='Fitted line')
-        equation_text2 = f'y = {a:.2f}x + {b:.2f}'
+        equation_text2 = f'AI prediction y = {a:.2f}x + {b:.2f}'
         ax.text(11, y_pred[-2]-2, equation_text2, fontsize=8, color='black')
-        st.caption(f"AI prediction y={a}x+{b}")
+        st.caption(f"y={a}x+{b}")
         error = round(errors(x, y, a, b),2)
         st.caption(f"오차:{error}")
 
